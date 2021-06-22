@@ -28,25 +28,36 @@ class GildedRose
         foreach ($this->items as $item) {
             switch ($item->name){
                 case $brie:
-                    if ($item->quality < 50) {
-                        $item->quality += 1;
-                    }
+                    $item->quality += 1;
                     $item->sellIn -= 1;
-                    if ($item->sellIn < 0 && $item->quality < 50) {
+
+                    if ($item->sellIn < 0) {
                         $item->quality += 1;
                     }
+
+                    if ($item->quality > 50) {
+                        $item->quality = 50;
+                    }
+
                     break;
                 case $backStage:
-                    if ($item->quality < 50) {
+                    $item->quality += 1;
+
+                    if ($item->sellIn <= 5) {
+                        $item->quality += 2;
+                    }
+                    elseif ($item->sellIn <= 10) {
                         $item->quality += 1;
-                        if ($item->sellIn < 11) {
-                            $item->quality += 1;
-                        }
                     }
-                    $item->sellIn = $item->sellIn - 1;
-                    if ($item->sellIn < 0) {
-                        $item->quality = $item->quality - $item->quality;
+
+                    if ($item->quality > 50) {
+                        $item->quality = 50;
                     }
+
+                    if ($item->sellIn <= 0) {
+                        $item->quality = 0;
+                    }
+                    $item->sellIn -= 1;
                     break;
                 case $sulfuras:
                     break; 
@@ -56,10 +67,11 @@ class GildedRose
                     }
                     $item->sellIn -= 1;
                     if ($item->sellIn < 0 && $item->quality > 0) {
-                            $item->quality -= 1;
+                        $item->quality -= 1;
                     }
                     break;
             }
         }
+
     }
 }
