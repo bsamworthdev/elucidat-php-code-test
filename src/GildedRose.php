@@ -26,90 +26,45 @@ class GildedRose
         $brie = 'Aged Brie';
         
         foreach ($this->items as $item) {
-            if ($item->name == $brie){
-                if ($item->quality < 50) {
-                    $item->quality += 1;
-                }
-                $item->sellIn -= 1;
-                if ($item->sellIn < 0 && $item->quality < 50) {
-                    $item->quality += 1;
-                }
-            } elseif ($item->name == $backStage){
-                if ($item->quality < 50) {
-                    $item->quality += 1;
-                    if ($item->sellIn < 11 && $item->quality < 50) {
+            switch ($item->name){
+                case $brie:
+                    if ($item->quality < 50) {
                         $item->quality += 1;
                     }
-                    if ($item->sellIn < 6 && $item->quality < 50) {
+                    $item->sellIn -= 1;
+                    if ($item->sellIn < 0 && $item->quality < 50) {
                         $item->quality += 1;
                     }
-                }
-                $item->sellIn = $item->sellIn - 1;
-                if ($item->sellIn < 0) {
-                    $item->quality = $item->quality - $item->quality;
-                }
-            } elseif ($item->name == $sulfuras){
-                
-            } else {
-                if ($item->quality > 0) {
-                    $item->quality -= 1;
-                }
-                $item->sellIn = $item->sellIn - 1;
-                if ($item->sellIn < 0) {
+                    break;
+                case $backStage:
+                    if ($item->quality < 50) {
+                        $item->quality += 1;
+                        if ($item->sellIn < 11 && $item->quality < 50) {
+                            $item->quality += 1;
+                        }
+                        if ($item->sellIn < 6 && $item->quality < 50) {
+                            $item->quality += 1;
+                        }
+                    }
+                    $item->sellIn = $item->sellIn - 1;
+                    if ($item->sellIn < 0) {
+                        $item->quality = $item->quality - $item->quality;
+                    }
+                    break;
+                case $sulfuras:
+                    break; 
+                default;
                     if ($item->quality > 0) {
-                        $item->quality = $item->quality - 1;
+                        $item->quality -= 1;
                     }
-                }
+                    $item->sellIn = $item->sellIn - 1;
+                    if ($item->sellIn < 0) {
+                        if ($item->quality > 0) {
+                            $item->quality = $item->quality - 1;
+                        }
+                    }
+                    break;
             }
-    
-    
-    
-
-
-
-            // if ($item->name != $brie and $item->name != $backStage) {
-            //     // if ($item->quality > 0) {
-            //     //     if ($item->name != $sulfuras) {
-            //     //         $item->quality = $item->quality - 1;
-            //     //     }
-            //     // }
-            // } else {
-            //     // if ($item->quality < 50) {
-            //     //     $item->quality = $item->quality + 1;
-            //     //     if ($item->name == $backStage) {
-            //     //         if ($item->sellIn < 11) {
-            //     //             if ($item->quality < 50) {
-            //     //                 $item->quality = $item->quality + 1;
-            //     //             }
-            //     //         }
-            //     //         if ($item->sellIn < 6) {
-            //     //             if ($item->quality < 50) {
-            //     //                 $item->quality = $item->quality + 1;
-            //     //             }
-            //     //         }
-            //     //     }
-            //     // }
-            // }
-            // if ($item->name != $sulfuras) {
-            //     // $item->sellIn = $item->sellIn - 1;
-            // }
-            // if ($item->sellIn < 0) {
-            //     // if ($item->name != $brie) {
-            //     //     if ($item->name != $backStage) {
-            //     //         if ($item->quality > 0) {
-            //     //             if ($item->name != $sulfuras) {
-            //     //                 $item->quality = $item->quality - 1;
-            //     //             }
-            //             }
-            //         } else {
-            //             // $item->quality = $item->quality - $item->quality;
-            //         }
-            //     } else {
-            //         // if ($item->quality < 50) {
-            //         //     $item->quality = $item->quality + 1;
-            //         // }
-            //     }
-            // }
         }
     }
 }
