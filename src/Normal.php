@@ -2,12 +2,15 @@
 
 namespace App;
 
-class Normal
+class Normal extends traits\ItemTrait
 {
     public $sellIn;
     public $quality;
     public $name;
 
+    /**
+     * Constructor for normal items
+     */
     public function __construct($quality, $sellIn)
     {
         $this->quality = $quality;
@@ -15,6 +18,9 @@ class Normal
         $this->name = 'Normal';
     }
 
+    /**
+     * Update quality value for Normal items
+     */
     public function updateQuality(){
         if ($this->quality > 0) {
             $this->quality -= 1;
@@ -24,6 +30,9 @@ class Normal
         }
     }
 
+    /**
+     * Update sellIn value for Normal items
+     */
     public function updateSellIn(){
         $this->sellIn -= 1;
     }

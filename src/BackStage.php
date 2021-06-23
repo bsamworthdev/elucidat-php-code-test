@@ -2,12 +2,15 @@
 
 namespace App;
 
-class BackStage
+class BackStage extends traits\ItemTrait
 {
     public $sellIn;
     public $quality;
     public $name;
 
+    /**
+    * Constructor for BackStage items
+    */
     public function __construct($quality, $sellIn)
     {
         $this->quality = $quality;
@@ -15,7 +18,9 @@ class BackStage
         $this->name = 'Backstage passes to a TAFKAL80ETC concert';
     }
 
-
+    /**
+     * Update quality value for BackStage items
+     */
     public function updateQuality(){
         $this->quality += 1;
 
@@ -34,6 +39,9 @@ class BackStage
         }
     }
 
+    /**
+     * Update sellIn value for BackStage items
+     */
     public function updateSellIn(){
         $this->sellIn -= 1;
     }

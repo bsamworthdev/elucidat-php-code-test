@@ -11,6 +11,9 @@ class GildedRose
 {
     private $items;
 
+    /**
+    * Constructor for GildedRose
+    */
     public function __construct(array $items)
     {
         $this->items = $items;

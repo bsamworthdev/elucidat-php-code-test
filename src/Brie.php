@@ -2,12 +2,15 @@
 
 namespace App;
 
-class Brie
+class Brie extends traits\ItemTrait
 {
     public $sellIn;
     public $quality;
     public $name;
 
+    /**
+    * Constructor for Brie items
+    */
     public function __construct($quality, $sellIn)
     {
         $this->quality = $quality;
@@ -15,6 +18,9 @@ class Brie
         $this->name = 'Aged Brie';
     }
 
+    /**
+     * Update quality value for Brie items
+     */
     public function updateQuality(){
         $this->quality += 1;
 
@@ -26,6 +32,10 @@ class Brie
             $this->quality = 50;
         }
     }
+
+    /**
+     * Update sellIn value for Brie items
+     */
     public function updateSellIn(){
         $this->sellIn -= 1;
     }
