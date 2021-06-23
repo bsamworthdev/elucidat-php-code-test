@@ -1,5 +1,10 @@
 <?php
 
+use App\Brie;
+use App\BackStage;
+use App\Sulfuras;
+use App\Normal;
+
 namespace App;
 
 class GildedRose
@@ -21,57 +26,9 @@ class GildedRose
 
     public function nextDay()
     {
-        $backStage = 'Backstage passes to a TAFKAL80ETC concert';
-        $sulfuras = 'Sulfuras, Hand of Ragnaros';
-        $brie = 'Aged Brie';
-        
         foreach ($this->items as $item) {
-            switch ($item->name){
-                case $brie:
-                    $item->quality += 1;
-                    $item->sellIn -= 1;
-
-                    if ($item->sellIn < 0) {
-                        $item->quality += 1;
-                    }
-
-                    if ($item->quality > 50) {
-                        $item->quality = 50;
-                    }
-
-                    break;
-                case $backStage:
-                    $item->quality += 1;
-
-                    if ($item->sellIn <= 0) {
-                        $item->quality = 0;
-                    }
-                    elseif ($item->sellIn <= 5) {
-                        $item->quality += 2;
-                    }
-                    elseif ($item->sellIn <= 10) {
-                        $item->quality += 1;
-                    }
-
-                    if ($item->quality > 50) {
-                        $item->quality = 50;
-                    }
-
-                    $item->sellIn -= 1;
-                    break;
-                case $sulfuras:
-                    break; 
-                default;
-                    if ($item->quality > 0) {
-                        $item->quality -= 1;
-                    }
-                    $item->sellIn -= 1;
-                    if ($item->sellIn < 0 && $item->quality > 0) {
-                        $item->quality -= 1;
-                    }
-                    break;
-            }
+            $item->updateQuality();
         }
-
     }
 }
+
