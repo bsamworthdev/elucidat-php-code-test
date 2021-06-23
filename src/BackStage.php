@@ -4,18 +4,15 @@ namespace App;
 
 class BackStage extends traits\ItemTrait
 {
-    public $sellIn;
-    public $quality;
-    public $name;
-
     /**
     * Constructor for BackStage items
     */
-    public function __construct($quality, $sellIn)
+    public function __construct($quality, $sellIn, $conjured = false)
     {
         $this->quality = $quality;
         $this->sellIn = $sellIn;
         $this->name = 'Backstage passes to a TAFKAL80ETC concert';
+        $this->conjured = $conjured;
     }
 
     /**
@@ -28,10 +25,10 @@ class BackStage extends traits\ItemTrait
             $this->quality = 0;
         }
         elseif ($this->sellIn <= 5) {
-            $this->quality += 2;
+            $this->quality += $this->conjured ? 4 : 2;
         }
         elseif ($this->sellIn <= 10) {
-            $this->quality += 1;
+            $this->quality += $this->conjured ? 2 : 1;
         }
 
         if ($this->quality > 50) {

@@ -13,7 +13,6 @@ describe('Gilded Rose', function () {
             it('updates normal items before sell date', function () {
                 $gr = new GildedRose([new Normal(10, 5)]);
                 $gr->nextDay();
-                
                 expect($gr->getItem(0)->quality)->toBe(9);
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });

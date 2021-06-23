@@ -4,18 +4,15 @@ namespace App;
 
 class Normal extends traits\ItemTrait
 {
-    public $sellIn;
-    public $quality;
-    public $name;
-
     /**
      * Constructor for normal items
      */
-    public function __construct($quality, $sellIn)
+    public function __construct($quality, $sellIn, $conjured = false)
     {
         $this->quality = $quality;
         $this->sellIn = $sellIn;
         $this->name = 'Normal';
+        $this->conjured = $conjured;
     }
 
     /**
@@ -23,10 +20,10 @@ class Normal extends traits\ItemTrait
      */
     public function updateQuality(){
         if ($this->quality > 0) {
-            $this->quality -= 1;
+            $this->quality -= $this->conjured ? 2 : 1;
         }
         if ($this->sellIn < 1 && $this->quality > 0) {
-            $this->quality -= 1;
+            $this->quality -= $this->conjured ? 2 : 1;
         }
     }
 

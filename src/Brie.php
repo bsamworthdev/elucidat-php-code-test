@@ -4,18 +4,15 @@ namespace App;
 
 class Brie extends traits\ItemTrait
 {
-    public $sellIn;
-    public $quality;
-    public $name;
-
     /**
     * Constructor for Brie items
     */
-    public function __construct($quality, $sellIn)
+    public function __construct($quality, $sellIn, $conjured = false)
     {
         $this->quality = $quality;
         $this->sellIn = $sellIn;
         $this->name = 'Aged Brie';
+        $this->conjured = $conjured;
     }
 
     /**
@@ -25,7 +22,7 @@ class Brie extends traits\ItemTrait
         $this->quality += 1;
 
         if ($this->sellIn < 1) {
-            $this->quality += 1;
+            $this->quality += $this->conjured ? 2 : 1;
         }
 
         if ($this->quality > 50) {
