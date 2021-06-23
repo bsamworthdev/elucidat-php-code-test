@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Normal extends Item
+class Normal
 {
     public $sellIn;
     public $quality;
@@ -15,19 +15,16 @@ class Normal extends Item
         $this->name = 'Normal';
     }
 
-    public function __toString()
-    {
-        return "{$this->sellIn}, {$this->quality}";
-    }
-
     public function updateQuality(){
-        
         if ($this->quality > 0) {
             $this->quality -= 1;
         }
-        $this->sellIn -= 1;
-        if ($this->sellIn < 0 && $this->quality > 0) {
+        if ($this->sellIn < 1 && $this->quality > 0) {
             $this->quality -= 1;
         }
+    }
+
+    public function updateSellIn(){
+        $this->sellIn -= 1;
     }
 }

@@ -15,10 +15,6 @@ class BackStage
         $this->name = 'Backstage passes to a TAFKAL80ETC concert';
     }
 
-    public function __toString()
-    {
-        return "{$this->sellIn}, {$this->quality}";
-    }
 
     public function updateQuality(){
         $this->quality += 1;
@@ -36,7 +32,9 @@ class BackStage
         if ($this->quality > 50) {
             $this->quality = 50;
         }
+    }
 
+    public function updateSellIn(){
         $this->sellIn -= 1;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Sulfuras extends Item
+class Sulfuras
 {
     public $sellIn;
     public $quality;
@@ -15,12 +15,11 @@ class Sulfuras extends Item
         $this->name = 'Sulfuras, Hand of Ragnaros';
     }
 
-    public function __toString()
-    {
-        return "{$this->sellIn}, {$this->quality}";
+    public function updateQuality(){
+        //Do nothing
     }
 
-    public function updateQuality(){
-        
+    public function updateSellIn(){
+        //Do nothing
     }
 }

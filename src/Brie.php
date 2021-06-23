@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Brie extends Item
+class Brie
 {
     public $sellIn;
     public $quality;
@@ -15,21 +15,18 @@ class Brie extends Item
         $this->name = 'Aged Brie';
     }
 
-    public function __toString()
-    {
-        return "{$this->sellIn}, {$this->quality}";
-    }
-
     public function updateQuality(){
         $this->quality += 1;
-        $this->sellIn -= 1;
 
-        if ($this->sellIn < 0) {
+        if ($this->sellIn < 1) {
             $this->quality += 1;
         }
 
         if ($this->quality > 50) {
             $this->quality = 50;
         }
+    }
+    public function updateSellIn(){
+        $this->sellIn -= 1;
     }
 }

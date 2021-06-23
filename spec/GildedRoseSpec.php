@@ -40,7 +40,6 @@ describe('Gilded Rose', function () {
             it('updates Brie items before the sell date', function () {
                 $gr = new GildedRose([new Brie(10, 5)]);
                 $gr->nextDay();
-                // die(print_r($gr->getItem(0)));
                 expect($gr->getItem(0)->quality)->toBe(11);
                 expect($gr->getItem(0)->sellIn)->toBe(4);
             });
