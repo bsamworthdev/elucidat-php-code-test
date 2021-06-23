@@ -43,20 +43,21 @@ class GildedRose
                 case $backStage:
                     $item->quality += 1;
 
-                    if ($item->sellIn <= 5) {
+                    if ($item->sellIn <= 0) {
+                        $item->quality = 0;
+                    }
+                    elseif ($item->sellIn <= 5) {
                         $item->quality += 2;
                     }
                     elseif ($item->sellIn <= 10) {
                         $item->quality += 1;
                     }
 
+
                     if ($item->quality > 50) {
                         $item->quality = 50;
                     }
 
-                    if ($item->sellIn <= 0) {
-                        $item->quality = 0;
-                    }
                     $item->sellIn -= 1;
                     break;
                 case $sulfuras:
