@@ -2,16 +2,19 @@
 
 namespace App;
 
-class Sulfuras extends traits\ItemTrait
+class Sulfuras extends Item
 {
     /**
-    * Constructor for Sulfuras items
-    */
-    public function __construct($quality, $sellIn, $conjured = false)
-    {
-        $this->quality = $quality;
-        $this->sellIn = $sellIn;
-        $this->name = 'Sulfuras, Hand of Ragnaros';
-        $this->conjured = $conjured;
+     * Update quality value for Sulfuras items
+     */
+    public function updateQuality(){
+        //Do nothing
+    }
+
+    /**
+     * Update sellIn value for Sulfuras items
+     */
+    public function updateSellIn(){
+        //Do nothing
     }
 }

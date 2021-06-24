@@ -10,6 +10,13 @@ namespace App;
 class GildedRose
 {
     private $items;
+    private $classes = [
+        'normal' => Normal::class,
+        'Aged Brie' => Brie::class,
+        'Backstage passes to a TAFKAL80ETC concert' => BackStage::class,
+        'Sulfuras, Hand of Ragnaros' => Sulfuras::class,
+        'Conjured Mana Cake' => Conjured::class
+    ];
 
     /**
     * Constructor for GildedRose
@@ -35,9 +42,12 @@ class GildedRose
      */
     public function nextDay()
     {
-        foreach ($this->items as $item) {
-            $item->updateQuality();
-            $item->updateSellIn();
+        foreach ($this->items as &$item) {
+            $class = $this->classes[$item->name];
+            $instance = new $class($item->name, $item->quality, $item->sellIn);
+            $instance->updateQuality();
+            $instance->updateSellIn();
+            $item = $instance;
         }
     }
 }
